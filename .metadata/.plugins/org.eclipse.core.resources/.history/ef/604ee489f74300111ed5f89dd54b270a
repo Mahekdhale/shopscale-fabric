@@ -1,0 +1,5 @@
+package com.shopscale;
+
+public class EurekaServerApplication {
+
+}
