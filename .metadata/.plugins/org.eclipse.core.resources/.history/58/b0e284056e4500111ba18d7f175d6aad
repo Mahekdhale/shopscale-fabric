@@ -1,5 +1,0 @@
-package com.shopscale.product.repository;
-
-public interface ProductRepository {
-
-}
