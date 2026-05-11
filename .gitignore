@@ -1,3 +1,9 @@
-/.metadata/
-.metadata/
 target/
+*.class
+*.jar
+*.war
+.classpath
+.project
+.settings/
+.idea/
+*.iml

@@ -1,0 +1,34 @@
+package com.shopscale.inventory.kafka;
+
+import com.shopscale.inventory.event.OrderPlacedEvent;
+import com.shopscale.inventory.model.Inventory;
+import com.shopscale.inventory.repository.InventoryRepository;
+import com.sun.org.slf4j.internal.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class InventoryConsumer {
+
+    private static final Logger log = LoggerFactory.getLogger(OrderProducer.class);
+
+    private final InventoryRepository inventoryRepository;
+
+    @KafkaListener(topics = "order-placed", groupId = "inventory-group")
+    public void consumeOrderPlacedEvent(OrderPlacedEvent event) {
+        log.info("Received OrderPlacedEvent for order: {}", event.getOrderNumber());
+        Inventory inventory = inventoryRepository
+            .findByProductId(event.getProductId())
+            .orElseThrow(() -> new RuntimeException(
+                "Product not in inventory: " + event.getProductId()));
+        inventory.setQuantity(inventory.getQuantity() - event.getQuantity());
+        inventoryRepository.save(inventory);
+        log.info("Inventory updated for product: {}", event.getProductId());
+    }
+}

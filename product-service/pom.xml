@@ -58,7 +58,23 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+<!-- Actuator -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
 
+<!-- Zipkin Tracing Bridge -->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-brave</artifactId>
+</dependency>
+
+<!-- Zipkin Reporter -->
+<dependency>
+    <groupId>io.zipkin.reporter2</groupId>
+    <artifactId>zipkin-reporter-brave</artifactId>
+</dependency>
     </dependencies>
 
     <!-- Dependency Management -->

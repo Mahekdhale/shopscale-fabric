@@ -1,0 +1,5 @@
+package com.shopscale.gateway.filter;
+
+public class JwtAuthFilter {
+
+}

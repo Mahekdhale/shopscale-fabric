@@ -1,0 +1,5 @@
+package com.shopscale.inventory.model;
+
+public class Inventory {
+
+}

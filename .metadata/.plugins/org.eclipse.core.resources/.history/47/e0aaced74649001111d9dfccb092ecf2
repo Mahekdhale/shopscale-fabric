@@ -1,0 +1,5 @@
+package com.shopscale.inventory.kafka;
+
+public class InventoryConsumer {
+
+}

@@ -1,0 +1,5 @@
+package com.shopscale.order.kafka;
+
+public class OrderProducer {
+
+}
