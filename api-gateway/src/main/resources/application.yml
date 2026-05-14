@@ -4,54 +4,40 @@ server:
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
       routes:
-        - id: product-service
-          uri: lb://product-service
+        - id: inventory-service
+          uri: lb://INVENTORY-SERVICE
           predicates:
-            - Path=/api/product/**
-          filters:
-            - JwtAuthFilter
+            - Path=/inventory/**
+
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product/**
 
         - id: order-service
-          uri: lb://order-service
+          uri: lb://ORDER-SERVICE
           predicates:
-            - Path=/api/order/**
-          filters:
-            - JwtAuthFilter
-
-        - id: inventory-service
-          uri: lb://inventory-service
-          predicates:
-            - Path=/api/inventory/**
-          filters:
-            - JwtAuthFilter
+            - Path=/order/**
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-  instance:
-    prefer-ip-address: true
-
-resilience4j:
-  circuitbreaker:
-    instances:
-      productService:
-        registerHealthIndicator: true
-        slidingWindowSize: 10
-        failureRateThreshold: 50
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 3
 
 management:
   tracing:
     sampling:
       probability: 1.0
-  zipkin:
-    tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+
+zipkin:
+  tracing:
+    endpoint: http://localhost:9411/api/v2/spans
+
+management:
   endpoints:
     web:
       exposure:

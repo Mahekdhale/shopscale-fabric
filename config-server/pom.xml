@@ -21,25 +21,12 @@
     <description>Eureka + Config Server</description>
 
     <!-- Properties -->
-    <properties>
+   <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
     </properties>
 
-    <!-- Dependencies -->
     <dependencies>
-
-        <!-- Spring Boot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Eureka Server -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
 
         <!-- Config Server -->
         <dependency>
@@ -47,22 +34,27 @@
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
 
-        <!-- Eureka Client (for Config Server registration) -->
+        <!-- Eureka Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!-- Lombok (optional) -->
+        <!-- Actuator -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
 
-    <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -75,7 +67,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <!-- Build -->
     <build>
         <plugins>
             <plugin>
@@ -84,5 +75,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

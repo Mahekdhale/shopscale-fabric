@@ -1,5 +1,0 @@
-package com.shopscale.order.event;
-
-public class OrderPlacedEvent {
-
-}
