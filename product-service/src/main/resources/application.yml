@@ -22,7 +22,7 @@ eureka:
 
 management:
   tracing:
-    sampling:
+    sampling: 
       probability: 1.0
 
   endpoints:
