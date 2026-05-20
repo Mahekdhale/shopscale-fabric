@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     Optional<Inventory> findByProductId(String productId);
+    boolean existsBySkuCode(String skuCode);
 }

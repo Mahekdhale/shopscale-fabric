@@ -27,28 +27,11 @@ public class JwtAuthFilter extends
 
     @Override
     public GatewayFilter apply(Config config) {
+
         return (exchange, chain) -> {
-            String authHeader = exchange.getRequest()
-                .getHeaders()
-                .getFirst(HttpHeaders.AUTHORIZATION);
 
-            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                log.warn("Missing or invalid Authorization header");
-                return onError(exchange, HttpStatus.UNAUTHORIZED);
-            }
-
-            String token = authHeader.substring(7);
-            try {
-                jwtUtil.validateToken(token);
-                String username = jwtUtil.extractUsername(token);
-                exchange.getRequest().mutate()
-                    .header("X-Auth-User", username)
-                    .build();
-            } catch (Exception e) {
-                log.error("JWT validation failed: {}", e.getMessage());
-                return onError(exchange, HttpStatus.UNAUTHORIZED);
-            }
             return chain.filter(exchange);
+
         };
     }
 
